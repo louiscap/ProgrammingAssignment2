@@ -9,7 +9,7 @@
 ## but can only be accessed using "setinverse" and "getinverse"
 
 makeCacheMatrix <- function(x = matrix()) {
-    inv <- NULL
+    inv <- NULL ## this will hold the "cached" inverse of the matrix
     set <- function(y) {
         x <<- y
         inv <<- NULL
@@ -23,10 +23,10 @@ makeCacheMatrix <- function(x = matrix()) {
     getinverse <- function() {
         inv
     }
-    list(set = set,
+    list(set = set, 
          get = get,
          setinverse = setinverse,
-         getinverse = getinverse)
+         getinverse = getinverse) ## this list is returned
 }
 
 
@@ -41,7 +41,7 @@ cacheSolve <- function(x, ...) {
     } else {
         mat <- x$get()
         inv <- solve(mat, ...)
-        x$setinverse(inv)
+        x$setinverse(inv) ## put calculated inverse into the cache
     }
     inv ## return the calculated inverse
 }
